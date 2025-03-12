@@ -1,0 +1,262 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    transition: background 1s ease;
+}
+
+
+.game-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    animation: floatIn 0.8s ease;
+}
+
+@keyframes floatIn {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+
+h1 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    border-radius: 3px;
+}
+
+
+.form {
+    margin-bottom: 30px;
+}
+
+#guess {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: #4b4b4b;
+    display: block;
+}
+
+input[type="number"] {
+    width: 80%;
+    padding: 15px;
+    margin: 15px 0;
+    font-size: 1.2rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+input[type="number"]:focus {
+    border-color: #4b6cb7;
+    box-shadow: 0 0 12px rgba(75, 108, 183, 0.4);
+    transform: scale(1.02);
+}
+
+
+input[type="submit"] {
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    color: #fff;
+    border: none;
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 80%;
+    margin-top: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(24, 40, 72, 0.4);
+}
+
+input[type="submit"]:hover {
+    background: linear-gradient(135deg, #3a5ca0, #0d1a38);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(24, 40, 72, 0.5);
+}
+
+input[type="submit"]:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 10px rgba(24, 40, 72, 0.4);
+}
+
+
+.result {
+    background-color: #f5f7fa;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 25px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 4px solid #4b6cb7;
+}
+
+.result p {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+}
+
+.guesses {
+    font-weight: bold;
+    color: #3498db;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.lastResult {
+    font-weight: bold;
+    color: #e74c3c;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.lowOrHigh {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #f39c12;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(243, 156, 18, 0.1);
+    transition: all 0.3s ease;
+}
+
+
+.startOver {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #fff;
+    border: none;
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 25px;
+    width: 80%;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+    display: none;
+}
+
+.startOver:hover {
+    background: linear-gradient(135deg, #c0392b, #a33326);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(231, 76, 60, 0.5);
+}
+
+.startOver:active {
+    transform: translateY(1px);
+}
+
+/*Animations & UI */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.game-container:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Success/Failure States */
+.success .lowOrHigh {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: #27ae60;
+    animation: pulse 1s infinite;
+}
+
+.fail .lowOrHigh {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+}
+
+/* Responsive section*/
+@media (max-width: 480px) {
+    .game-container {
+        padding: 30px 20px;
+        width: 95%;
+        border-radius: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    input[type="number"], input[type="submit"], .startOver {
+        width: 100%;
+    }
+
+    .result {
+        padding: 15px;
+    }
+}
+
+/* Added Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .game-container {
+        background-color: rgba(42, 52, 65, 0.95);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    h1, #guess {
+        color: #ecf0f1;
+    }
+    
+    input[type="number"] {
+        background-color: #34495e;
+        color: #ecf0f1;
+        border-color: #2c3e50;
+    }
+    
+    .result {
+        background-color: #2c3e50;
+        border-left: 4px solid #3498db;
+    }
+    
+    .result p {
+        color: #ecf0f1;
+    }
+}
